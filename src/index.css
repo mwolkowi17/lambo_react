@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+canvas{
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+#buttonkurek{
+  position: absolute;
+  bottom: 20px;
+  left: 50px;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #2E8BC0;
+  cursor: pointer;
+}
+#buttonkurek:hover{
+  background-color: #145DA0;
+}
+
+#start{
+  position: absolute;
+  bottom: 20px;
+  left: 180px;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  background-color:#2E8BC0;
+  cursor: pointer;
+}
+#start:hover{
+  background-color: #145DA0;
+}
+
+.display {
+  position: absolute;
+  width: 400px;
+  background-color: rgba(0,177,255,0.5);;
+  height: 390px;
+  top: 40px;
+  left: 40px;
+  right: 0px;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  color: rgba(255,255,255,0.75);
+  text-shadow: 0 0 10px rgba(0,255,255,0.95);
+  box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
+  border: 1px solid rgba(127,255,255,0.25);
+  float: left;
+  
+}
