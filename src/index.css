@@ -18,17 +18,21 @@ canvas{
   background-color: black;
 }
 
-#buttonkurek{
-  position: absolute;
+.buttonA{
+  /*position: absolute;
   bottom: 20px;
-  left: 50px;
+  left: 50px;*/
+  display:inline-block;
+  position:relative;
+  
   width: 100px;
   height: 40px;
   border-radius: 10px;
   background-color: #2E8BC0;
   cursor: pointer;
+  
 }
-#buttonkurek:hover{
+.buttonA:hover{
   background-color: #145DA0;
 }
 
@@ -64,3 +68,41 @@ canvas{
   float: left;
   
 }
+
+.information{
+  position: absolute;
+  
+  top:20px;
+  color:white;
+  width: 100%;
+ 
+}
+#info{
+  text-align: center;
+  
+}
+
+.controllPanel{
+  position: absolute;
+  display: block;
+  bottom: 20px;
+  width: 100%;
+ 
+}
+
+.buttonContainer{
+  display: block;
+  width: 600px;
+  height: 70px;
+ margin-left: auto;
+ margin-right: auto;
+ text-align: center;
+ padding: 5px 20px;
+
+}
+
+button{
+  margin-left: 10px;
+}
+
+

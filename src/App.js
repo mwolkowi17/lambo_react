@@ -13,7 +13,7 @@ function App() {
 
   function Loader() {
     const { progress } = useProgress()
-    return <Html center style={{color:'white'}}>{progress} % loaded</Html>
+    return <Html center style={{ color: 'white' }}>{progress} % loaded</Html>
   }
 
   return (
@@ -30,9 +30,17 @@ function App() {
 
         </Suspense>
       </Canvas>
-<div>
-<p>This work is based on "2021 Lamborghini Countach LPI 800-4"</p>
-</div>
+      <div className={'information'}>
+        <p id={'info'}>This work is based on "2021 Lamborghini Countach LPI 800-4"</p>
+      </div>
+      <div className={'controllPanel'}>
+        <div className={'buttonContainer'}>
+        <button className={'buttonA'}>left</button>
+        <button className={'buttonA'}>right</button>
+        <button className={'buttonA'}>top</button>
+        <button className={'buttonA'}>bottom</button>
+        </div>
+      </div>
 
     </div>
 
