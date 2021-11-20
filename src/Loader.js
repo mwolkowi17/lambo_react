@@ -9,7 +9,7 @@ export function Scene(props) {
     const gltf = useLoader(GLTFLoader, '/scene.gltf')
     return (
       <>
-        <OrbitControls  />
+        {/*<OrbitControls  />*/}
         
         <primitive object={gltf.scene}  position={props.pos} rotation={props.rot}/>
         

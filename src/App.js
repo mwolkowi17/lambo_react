@@ -4,7 +4,7 @@ import {useState, useRef} from 'react'
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Scene } from './Loader';
-import { Html, useProgress } from '@react-three/drei';
+import { Html, useProgress, OrbitControls } from '@react-three/drei';
 import {useSpring, animated} from '@react-spring/three';
 
 
@@ -18,15 +18,18 @@ function App() {
   }
 
   const [startPosition, setStartPosition] = useState([-2,0,0]);
-  const [startRotation, setStartRotation] = useState([0,Math.PI,0])
+  const [startRotation, setStartRotation] = useState([0,Math.PI,0]);
+  const [finalPosition, setFinalPosition] = useState([-0.05,0,-0.07]);
+  const [finalRotation, setFinalRotation] = useState([0,Math.PI/2,0])
 
   const [active, setActive]=useState(true)
   const myMesh = useRef();
-  const {rotation,position}= useSpring({ rotation: active ? startRotation : [0,Math.PI/2,0], position: active ? startPosition : [-0.05,0,-0.07] ,config: { duration: 3000 }  })
+  const {rotation,position}= useSpring({ rotation: active ? startRotation : finalRotation, position: active ? startPosition : finalPosition ,config: { duration: 3000 }  })
   return (
     <div>
       <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 8] }}>
         <Suspense fallback={null}>
+          <OrbitControls />
           <ambientLight />
           <pointLight position={[10, 20, 10]} />
           <pointLight position={[-5, -15, 30]} />
