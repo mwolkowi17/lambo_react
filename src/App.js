@@ -1,11 +1,11 @@
 
 import './App.css';
-import {useState, useRef} from 'react'
+import { useState, useRef } from 'react'
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Scene } from './Loader';
 import { Html, OrbitControls } from '@react-three/drei';
-import {useSpring, animated} from '@react-spring/three';
+import { useSpring, animated } from '@react-spring/three';
 
 
 
@@ -18,26 +18,42 @@ function App() {
     return <Html center style={{ color: 'white' }}>loading...</Html>
   }
 
-  const [startPosition, setStartPosition] = useState([-2,0,0]);
-  const [startRotation, setStartRotation] = useState([0,Math.PI,0]);
-  const [finalPosition, setFinalPosition] = useState([-0.05,0,-0.07]);
-  const [finalRotation, setFinalRotation] = useState([0,Math.PI/2,0])
+  const [startPosition] = useState([-2, 0, 0]);
+  const [startRotation] = useState([0, Math.PI, 0]);
+  const [finalPosition, setFinalPosition] = useState([-0.05, 0, -0.07]);
+  const [finalRotation, setFinalRotation] = useState([0, Math.PI / 2, 0])
 
-  const [active, setActive]=useState(true)
+  const [active, setActive] = useState(true)
   const myMesh = useRef();
-  const {rotation,position}= useSpring({ rotation: active ? startRotation : finalRotation, position: active ? startPosition : finalPosition ,config: { duration: 3000 }  })
+  const { rotation, position } = useSpring({
+    rotation: active ? startRotation : finalRotation,
+    position: active ? startPosition : finalPosition,
+    config: { duration: 3000 }
+  })
 
-  function leftTurn(){
-    setFinalPosition([-0.05,0,-0.07]);
-    setFinalRotation([0,Math.PI/2,0])
+  function leftTurn() {
+    setFinalPosition([-0.05, 0, -0.07]);
+    setFinalRotation([0, Math.PI / 2, 0])
     setActive(!active)
   }
 
-  function rightTurn(){
-    
-    setFinalPosition([-0.05,0,4.5]);
-    setFinalRotation([0,1.5*Math.PI,0])
-    setActive(!active)
+  function rightTurn() {
+
+    setFinalPosition([-0.05, 0, 4.5]);
+    setFinalRotation([0, 1.5 * Math.PI, 0]);
+    setActive(!active);
+  }
+
+  function topTurn(){
+    setFinalPosition([-0.05, 2, -0.07]);
+    setFinalRotation([Math.PI/2, Math.PI / 2, 0]);
+    setActive(!active);
+  }
+
+  function backTurn(){
+    setFinalPosition([2, 0, 0]);
+    setFinalRotation([0, Math.PI/60, 0])
+    setActive(!active);
   }
   return (
     <div>
@@ -49,7 +65,7 @@ function App() {
           <pointLight position={[-5, -15, 30]} />
           <Suspense fallback={<Loader />}>
             <animated.mesh position={position} rotation={rotation} ref={myMesh}>
-            <Scene  />
+              <Scene />
             </animated.mesh>
           </Suspense>
 
@@ -63,8 +79,8 @@ function App() {
         <div className={'buttonContainer'}>
           <button className={'buttonA'} onClick={() => leftTurn()}>left/front</button>
           <button className={'buttonA'} onClick={() => rightTurn()}>right/front</button>
-          <button className={'buttonA'}>top</button>
-          <button className={'buttonA'}>bottom</button>
+          <button className={'buttonA'} onClick={() => topTurn()}>top/front</button>
+          <button className={'buttonA'} onClick={() => backTurn()} >bottom/front</button>
         </div>
       </div>
 
