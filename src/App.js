@@ -14,7 +14,8 @@ function App() {
 
   function Loader() {
     const { progress } = useProgress()
-    return <Html center style={{ color: 'white' }}>{progress} % loaded</Html>
+    //return <Html center style={{ color: 'white' }}>{progress} % loaded</Html>
+    return <Html center style={{ color: 'white' }}>loading...</Html>
   }
 
   const [startPosition, setStartPosition] = useState([-2,0,0]);
@@ -25,6 +26,19 @@ function App() {
   const [active, setActive]=useState(true)
   const myMesh = useRef();
   const {rotation,position}= useSpring({ rotation: active ? startRotation : finalRotation, position: active ? startPosition : finalPosition ,config: { duration: 3000 }  })
+
+  function leftTurn(){
+    setFinalPosition([-0.05,0,-0.07]);
+    setFinalRotation([0,Math.PI/2,0])
+    setActive(!active)
+  }
+
+  function rightTurn(){
+    
+    setFinalPosition([-0.05,0,3.5]);
+    setFinalRotation([0,1.5*Math.PI,0])
+    setActive(!active)
+  }
   return (
     <div>
       <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 8] }}>
@@ -47,8 +61,8 @@ function App() {
       </div>
       <div className={'controllPanel'}>
         <div className={'buttonContainer'}>
-          <button className={'buttonA'} onClick={() => setActive(!active)}>left</button>
-          <button className={'buttonA'}>right</button>
+          <button className={'buttonA'} onClick={() => leftTurn()}>left</button>
+          <button className={'buttonA'} onClick={() => rightTurn()}>right</button>
           <button className={'buttonA'}>top</button>
           <button className={'buttonA'}>bottom</button>
         </div>
