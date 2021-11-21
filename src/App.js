@@ -4,7 +4,7 @@ import {useState, useRef} from 'react'
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Scene } from './Loader';
-import { Html, useProgress, OrbitControls } from '@react-three/drei';
+import { Html, OrbitControls } from '@react-three/drei';
 import {useSpring, animated} from '@react-spring/three';
 
 
@@ -13,7 +13,7 @@ import {useSpring, animated} from '@react-spring/three';
 function App() {
 
   function Loader() {
-    const { progress } = useProgress()
+    //const { progress } = useProgress()
     //return <Html center style={{ color: 'white' }}>{progress} % loaded</Html>
     return <Html center style={{ color: 'white' }}>loading...</Html>
   }
@@ -35,7 +35,7 @@ function App() {
 
   function rightTurn(){
     
-    setFinalPosition([-0.05,0,3.5]);
+    setFinalPosition([-0.05,0,4.5]);
     setFinalRotation([0,1.5*Math.PI,0])
     setActive(!active)
   }
@@ -48,7 +48,7 @@ function App() {
           <pointLight position={[10, 20, 10]} />
           <pointLight position={[-5, -15, 30]} />
           <Suspense fallback={<Loader />}>
-            <animated.mesh position={position} rotation={rotation}>
+            <animated.mesh position={position} rotation={rotation} ref={myMesh}>
             <Scene  />
             </animated.mesh>
           </Suspense>
@@ -61,8 +61,8 @@ function App() {
       </div>
       <div className={'controllPanel'}>
         <div className={'buttonContainer'}>
-          <button className={'buttonA'} onClick={() => leftTurn()}>left</button>
-          <button className={'buttonA'} onClick={() => rightTurn()}>right</button>
+          <button className={'buttonA'} onClick={() => leftTurn()}>left/front</button>
+          <button className={'buttonA'} onClick={() => rightTurn()}>right/front</button>
           <button className={'buttonA'}>top</button>
           <button className={'buttonA'}>bottom</button>
         </div>
